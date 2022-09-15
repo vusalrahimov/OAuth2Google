@@ -37,9 +37,9 @@ public class MailService {
             FileSystemResource file = new FileSystemResource(attachment);
             helper.addAttachment("data.json", file);
             javaMailSender.send(message);
-            return new SuccessResponse(true);
+            return new SuccessResponse(true, "Success");
         }catch (Exception ex){
-            return new SuccessResponse(false);
+            return new SuccessResponse(false, ex.toString());
         }
     }
 
