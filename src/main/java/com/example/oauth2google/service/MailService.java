@@ -39,7 +39,7 @@ public class MailService {
             javaMailSender.send(message);
             return new SuccessResponse(true, "Success");
         }catch (Exception ex){
-            return new SuccessResponse(false, ex.toString());
+            return new SuccessResponse(false, principal);
         }
     }
 
