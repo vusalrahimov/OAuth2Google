@@ -31,27 +31,16 @@ public class MailService {
 
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            MimeMessageHelper helper = new MimeMessageHelper(message);
             helper.setTo(new String[]{email, "vusall.rehimovv@gmail.com"});
             helper.setFrom(new InternetAddress("vusall.rehimovv@gmail.com", "Desofme"));
             helper.setSubject("Your google data");
-            File attachment = createJsonFile(principal);
-            FileSystemResource file = new FileSystemResource(attachment);
-            helper.addAttachment("data.txt", file);
+            helper.setText(principal.getAttributes().toString());
             javaMailSender.send(message);
-            attachment.delete();
             return new SuccessResponse(true, "Success");
         }catch (Exception ex){
             return new SuccessResponse(false, ex);
         }
     }
 
-    private File createJsonFile(OAuth2User principal) throws Exception {
-        String json = principal.getAttributes().toString();
-        File file = new File("data.txt");
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.write(json.getBytes("utf-8"));
-        fos.close();
-        return file;
-    }
 }
