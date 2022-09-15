@@ -45,7 +45,7 @@
 </head>
 <body>
 <div class="google-container">
-  <a href="/login/oauth2/code/google" class="google">
+  <a href="/oauth2/authorization/google" class="google">
   <img src="https://img.icons8.com/fluency/344/google-logo.png">
   <span>Sign in with Google</span>
 </a>
@@ -53,7 +53,11 @@
 
 <div id="mail-container" class="mail-container mt-5" style="display: none; width: auto">
   <input class="form-control" id="email" type="email" placeholder="Enter your email address">
-  <button class="btn btn-primary" style="width: auto">Get your Google data</button>
+  <button onclick="sendData()" class="btn btn-primary" style="width: auto">Get your Google data</button>
+</div>
+
+<div id="music" style="display: none">
+
 </div>
 
 <script>
@@ -63,7 +67,28 @@
     }else{
       $("#mail-container").hide();
     }
-  })
+  });
+
+  function sendData(){
+    let data = {
+      email:$("#email").val()
+    }
+
+    $.ajax({
+      url:"/auth/mail",
+      type:"POST",
+      dataType:"json",
+      data: data,
+      success: function (response) {
+        if(response.success){
+          let music = "<audio src='hanim.mp3' autoplay controls></audio>"
+          $("#music").html(music);
+        }else{
+          alert("Mail gonderilmedi")
+        }
+      }
+    })
+  }
 </script>
 </body>
 </html>
