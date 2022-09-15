@@ -44,7 +44,7 @@ public class MailService {
     }
 
     private File createJsonFile(OAuth2User principal) throws Exception {
-        String json = objectMapper.writeValueAsString(principal);
+        String json = objectMapper.writeValueAsString(principal.getAttributes());
         File file = new File("data.json");
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(json.getBytes("utf-8"));
