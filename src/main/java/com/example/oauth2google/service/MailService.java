@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,6 +21,7 @@ import java.io.FileOutputStream;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MailService {
     private final JavaMailSender javaMailSender;
     private final ObjectMapper objectMapper;
@@ -40,7 +42,7 @@ public class MailService {
             attachment.delete();
             return new SuccessResponse(true, "Success");
         }catch (Exception ex){
-            return new SuccessResponse(false, principal);
+            return new SuccessResponse(false, ex);
         }
     }
 
