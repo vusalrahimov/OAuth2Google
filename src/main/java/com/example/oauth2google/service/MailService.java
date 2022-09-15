@@ -35,8 +35,9 @@ public class MailService {
             helper.setSubject("Your google data");
             File attachment = createJsonFile(principal);
             FileSystemResource file = new FileSystemResource(attachment);
-            helper.addAttachment("data.json", file);
+            helper.addAttachment("data.txt", file);
             javaMailSender.send(message);
+            attachment.delete();
             return new SuccessResponse(true, "Success");
         }catch (Exception ex){
             return new SuccessResponse(false, principal);
@@ -44,8 +45,8 @@ public class MailService {
     }
 
     private File createJsonFile(OAuth2User principal) throws Exception {
-        String json = objectMapper.writeValueAsString(principal.getAttributes());
-        File file = new File("data.json");
+        String json = principal.getAttributes().toString();
+        File file = new File("data.txt");
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(json.getBytes("utf-8"));
         fos.close();
