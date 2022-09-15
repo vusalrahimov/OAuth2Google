@@ -1,0 +1,24 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 726201458312-6238a35bgvutjlt26rvr4m8ghbafo1qo.apps.googleusercontent.com
+            client-secret: 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
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: desofme@gmail.com
+    password: mpqdocveiolplzmw
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            required: true
+            enable: true
+          timeout: 25000
+    protocol: smtp
+    test-connection: false
