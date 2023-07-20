@@ -4,13 +4,13 @@ spring:
       client:
         registration:
           google:
-            client-id: 726201458312-6238a35bgvutjlt26rvr4m8ghbafo1qo.apps.googleusercontent.com
-            client-secret: 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
+            client-id: 
+            client-secret: 
   mail:
     default-encoding: UTF-8
     host: smtp.gmail.com
     username: vusalr06@gmail.com
-    password: stxvuznjrvyjfymi
+    password: 
     port: 587
     properties:
       mail:
